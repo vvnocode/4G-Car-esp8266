@@ -1,0 +1,5 @@
+LED = 0
+TURN = 1
+GO = 2
+BACK = 3
+LIGHT = 4
