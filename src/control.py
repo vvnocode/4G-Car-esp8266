@@ -2,8 +2,7 @@ import ujson
 import enums
 import led
 import servo
-#import time
-#import motor
+import motor
 
 
 def detail(topic, msg):
@@ -17,7 +16,7 @@ def detail(topic, msg):
         led.control_led(data)
     elif event == enums.TURN:
         servo.turn_percent(data)
-    elif event == enums.GO:
-        print()
-    elif event == enums.BACK:
+    elif event == enums.RUN:
+        motor.run_percent(data)
+    elif event == enums.LIGHT:
         print()

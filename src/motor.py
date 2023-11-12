@@ -34,11 +34,16 @@ def back(speed):
     #p_en1.value(1)
     p_en1.duty(speed if speed < speed_max else speed_max)
     
-#停止    
+#停止短暂   
 def stop_short():
     p_in1.value(0)
     p_in2.value(0)
-    time.sleep_ms(400)
+    time.sleep_ms(300)
+    
+#停止    
+def stop():
+    p_in1.value(0)
+    p_in2.value(0)
     
 # 运行状态检测
 def run_check(status):
@@ -84,3 +89,17 @@ def back_slow_down():
     speed_current -= speed_add
     speed_current = speed_current if (speed_current > 0 and speed_current < speed_max) else (speed_max if speed_current > 0 else 0)
     back(speed_current)
+    
+# 百分比运动
+def run_percent(percentum):
+    if (not isinstance(percentum, (int)) or percentum == 0 ):
+        print("空转")
+        space(10)
+    # 前进
+    elif percentum > 0:
+        print("前进")
+        go(int(speed_max * percentum / 100))
+    # 后退
+    else:
+        print("后退")
+        back(int(- speed_max * percentum / 100))

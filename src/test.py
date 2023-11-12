@@ -1,3 +1,3 @@
-percentum = None
-print(not isinstance(percentum, (int)))
-print(percentum is None | isinstance(percentum, Number) | percentum == 0 )
+import servo
+
+servo.turn(5430)
