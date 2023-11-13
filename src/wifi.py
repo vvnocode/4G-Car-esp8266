@@ -1,5 +1,6 @@
 import network
 
+
 def do_connect():
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
@@ -9,4 +10,3 @@ def do_connect():
         while not wlan.isconnected():
             pass
     print('network config:', wlan.ifconfig())
-

@@ -12,11 +12,13 @@ PASSWORD = None
 
 TOPIC = b"4gcar"
 
+
 def sub_cb(topic, msg):
     control.detail(topic, msg)
 
+
 def subscribe():
-    c = MQTTClient(CLIENT_ID, server=SERVER, port=PORT, user=USER, password=PASSWORD)
+    c = MQTTClient(client_id=CLIENT_ID, server=SERVER, port=PORT, user=USER, password=PASSWORD)
     # Subscribed messages will be delivered to this callback
     c.set_callback(sub_cb)
     c.connect()
@@ -24,8 +26,7 @@ def subscribe():
     print("Connected to %s, subscribed to %s topic" % (SERVER, TOPIC))
 
     try:
-        while 1:
-            # micropython.mem_info()
-            c.wait_msg()
+        while True:
+            c.check_msg()
     finally:
         c.disconnect()

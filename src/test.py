@@ -1,3 +1,3 @@
 import servo
 
-servo.turn(5430)
+servo.turn_percent(80)
