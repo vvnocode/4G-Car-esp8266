@@ -1,7 +1,9 @@
 import ujson
 import enums
-import servo
+from servo17g import Servo
 import motor
+
+servo = Servo(0)  # D1
 
 
 def detail(topic, msg):
@@ -12,7 +14,7 @@ def detail(topic, msg):
     data = json_data.get("data")
     # 处理事件
     if event == enums.TURN:
-        servo.turn_percent(data)
+        servo.set_angle(data)
     elif event == enums.RUN:
         motor.run_percent(data)
     elif event == enums.LIGHT:

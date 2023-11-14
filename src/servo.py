@@ -1,9 +1,21 @@
-# 舵机
+# 17g舵机
 from machine import Pin, PWM
-import time
 
-p2 = PWM(Pin(14))
-p2.freq(50)
+# 定义舵机参数
+angle_min = 0  # 最小角度
+angle_max = 120  # 最大角度
+neutral_pulse_width = 1500  # 中立点脉冲宽度（微秒）
+frequency = 300  # PWM频率（赫兹）
+width_min = 0.5  # 最低脉冲宽度 毫秒
+width_max = 2.5  # 最低脉冲宽度 毫秒
+period = 1000 / 300.0  # 脉冲周期 毫秒
+
+pwm_pin = Pin(14, Pin.OUT)  # 使用GPIO15作为PWM输出引脚
+pwm = PWM(pwm_pin, freq=frequency)
+pwm_range = 1023
+
+angle_left = 0  # 最左边角度，和结构有关，固定
+angle_wright = 0  # 最左边角度，和结构有关，固定
 
 left_max = 5430
 middle = 4650
@@ -16,8 +28,7 @@ def turn(scale):
     elif scale < right_max:
         scale = right_max
     turn_scale = int(scale)
-    print(turn_scale)
-    p2.duty_u16(turn_scale)
+    pwm.duty_u16(turn_scale)
 
 
 # 百分比转向
