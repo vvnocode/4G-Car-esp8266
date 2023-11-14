@@ -3,7 +3,7 @@ import enums
 from servo17g import Servo
 import motor
 
-servo = Servo(0)  # D1
+servo = Servo(0)  # D3
 
 
 def detail(topic, msg):
