@@ -1,7 +1,6 @@
-from servo17g import Servo
+import servos
+import time
 
-# 创建一个舵机对象
-s = Servo(0)  # D3
-
-# 设置舵机的角度
-s.set_angle(90)
+for i in range(180):
+    servos.s_sg90.set_angle(i)
+    time.sleep_ms(100)
